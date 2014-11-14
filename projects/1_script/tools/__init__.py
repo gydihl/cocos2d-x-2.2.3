@@ -1,0 +1,3 @@
+import autoCompression
+import win32Resource
+import fileTool
