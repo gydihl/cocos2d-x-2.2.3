@@ -388,7 +388,10 @@ void CCArmatureAnimation::update(float dt)
         CCMovementEvent *event = m_sMovementEventQueue.front();
         m_sMovementEventQueue.pop();
 
-        (m_sMovementEventTarget->*m_sMovementEventCallFunc)(event->armature, event->movementType, event->movementID);
+		if (m_sMovementEventTarget && m_sMovementEventCallFunc)
+        {
+			(m_sMovementEventTarget->*m_sMovementEventCallFunc)(event->armature, event->movementType, event->movementID);
+		}
 
         CC_SAFE_DELETE(event);
     }
