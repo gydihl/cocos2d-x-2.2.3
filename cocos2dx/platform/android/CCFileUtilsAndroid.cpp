@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 Copyright (c) 2010 cocos2d-x.org
 
 http://www.cocos2d-x.org
@@ -171,6 +171,12 @@ unsigned char* CCFileUtilsAndroid::doGetFileData(const char* pszFileName, const 
         msg.append(pszFileName).append(") failed!");
         CCLOG("%s", msg.c_str());
     }
+	else
+	{// 解密
+		CCLOG("begin decode: %s", pszFileName);
+		*pSize = this->cryptoDecode(pData, *pSize);
+		CCLOG("end decode %s", pszFileName);
+	}
     
     return pData;
 }

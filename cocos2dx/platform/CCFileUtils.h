@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 Copyright (c) 2010-2013 cocos2d-x.org
 
 http://www.cocos2d-x.org
@@ -35,6 +35,7 @@ NS_CC_BEGIN
 
 class CCDictionary;
 class CCArray;
+class MyCrypto;
 /**
  * @addtogroup platform
  * @{
@@ -434,6 +435,18 @@ protected:
      *  The singleton pointer of CCFileUtils.
      */
     static CCFileUtils* s_sharedFileUtils;
+
+protected:
+	// 加密解密对象
+	MyCrypto *_pCrypto;
+
+public:
+	void setCrypto(MyCrypto *pCrypto)	{	_pCrypto = pCrypto;	}
+	MyCrypto* getCrypto() const			{	return _pCrypto;	}
+
+protected:
+	// 解密函数
+	unsigned long cryptoDecode(unsigned char *&pBuff, unsigned long length);
     
 };
 

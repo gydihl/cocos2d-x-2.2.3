@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 Copyright (c) 2010-2013 cocos2d-x.org
 
 http://www.cocos2d-x.org
@@ -29,6 +29,7 @@ THE SOFTWARE.
 #include "CCSAXParser.h"
 #include "support/tinyxml2/tinyxml2.h"
 #include "support/zip_support/unzip.h"
+#include "support/crypto/MyCrypto.h"
 #include <stack>
 #include <algorithm>
 
@@ -466,6 +467,7 @@ void CCFileUtils::purgeFileUtils()
 CCFileUtils::CCFileUtils()
 : m_pFilenameLookupDict(NULL)
 {
+	_pCrypto = NULL;
 }
 
 CCFileUtils::~CCFileUtils()
@@ -475,6 +477,7 @@ CCFileUtils::~CCFileUtils()
 
 bool CCFileUtils::init()
 {
+	_pCrypto = NULL;
     m_searchPathArray.push_back(m_strDefaultResRootPath);
     m_searchResolutionsOrderArray.push_back("");
     return true;
@@ -512,7 +515,20 @@ unsigned char* CCFileUtils::getFileData(const char* pszFileName, const char* psz
         
         CCLOG("%s", msg.c_str());
     }
+	else
+	{// 解密
+		CCLOG("begin decode: %s", pszFileName);
+		*pSize = this->cryptoDecode(pBuffer, *pSize);
+		CCLOG("end decode %s", pszFileName);
+	}
     return pBuffer;
+}
+
+unsigned long CCFileUtils::cryptoDecode(unsigned char *&pBuff, unsigned long length)
+{
+	if (!_pCrypto || !pBuff || 0 == length)
+		return length;
+	return _pCrypto->decode(pBuff, length);
 }
 
 unsigned char* CCFileUtils::getFileDataFromZip(const char* pszZipFilePath, const char* pszFileName, unsigned long * pSize)
