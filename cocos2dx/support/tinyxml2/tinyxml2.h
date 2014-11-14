@@ -1247,6 +1247,7 @@ public:
     }
     /// Query a specific attribute in the list.
     const XMLAttribute* FindAttribute( const char* name ) const;
+	XMLAttribute* FindAttribute( const char* name );
 
     /** Convenience function for easy access to the text inside an element. Although easy
     	and concise, GetText() is limited compared to getting the TiXmlText child
@@ -1333,7 +1334,7 @@ private:
     XMLElement( const XMLElement& );	// not supported
     void operator=( const XMLElement& );	// not supported
 
-    XMLAttribute* FindAttribute( const char* name );
+//    XMLAttribute* FindAttribute( const char* name );
     XMLAttribute* FindOrCreateAttribute( const char* name );
     //void LinkAttribute( XMLAttribute* attrib );
     char* ParseAttributes( char* p );
