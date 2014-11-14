@@ -130,6 +130,8 @@ void CCTMXTiledMap::setProperties(CCDictionary* var)
 CCTMXLayer * CCTMXTiledMap::parseLayer(CCTMXLayerInfo *layerInfo, CCTMXMapInfo *mapInfo)
 {
     CCTMXTilesetInfo *tileset = tilesetForLayer(layerInfo, mapInfo);
+	if (!tileset)
+		return NULL;
     CCTMXLayer *layer = CCTMXLayer::create(tileset, layerInfo, mapInfo);
 
     // tell the layerinfo to release the ownership of the tiles map.
@@ -215,6 +217,8 @@ void CCTMXTiledMap::buildWithMapInfo(CCTMXMapInfo* mapInfo)
             if (layerInfo && layerInfo->m_bVisible)
             {
                 CCTMXLayer *child = parseLayer(layerInfo, mapInfo);
+				if (!child)
+					continue;
                 addChild((CCNode*)child, idx, idx);
 
                 // update content size with the max size

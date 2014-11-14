@@ -41,6 +41,8 @@ NS_CC_BEGIN
 
 CCTMXLayer * CCTMXLayer::create(CCTMXTilesetInfo *tilesetInfo, CCTMXLayerInfo *layerInfo, CCTMXMapInfo *mapInfo)
 {
+	if (!tilesetInfo)
+		return NULL;
     CCTMXLayer *pRet = new CCTMXLayer();
     if (pRet->initWithTilesetInfo(tilesetInfo, layerInfo, mapInfo))
     {
