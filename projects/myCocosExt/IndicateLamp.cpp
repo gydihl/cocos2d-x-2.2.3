@@ -36,7 +36,7 @@ bool IndicateLamp::init(int nCount)
 		for (int i = 0; i < nCount; ++i)
 		{
 			CCSprite *pSprite =	AssetLoader::createSprite(si_passPointNormal);
-			position.x = pSprite->getContentSize().width * (i-nMid);
+			position.x = pSprite->getContentSize().width*1.3f * (i-nMid);
 			position.y = 0.0f;
 			UnitKit::calcWinPoint(position);
 			pSprite->setPosition(position);
