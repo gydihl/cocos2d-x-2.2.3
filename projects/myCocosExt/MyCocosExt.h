@@ -16,6 +16,7 @@
 #include "BloodCtrl.h"
 #include "PointGrade.h"
 #include "IconNumber.h"
+#include "IconNumberWidget.h"
 #include "ButtonDigit.h"
 #include "ScrollNumber/ScrollNumber.h"
 
