@@ -31,8 +31,11 @@ public:
 	// CCScale9Sprite
 	static cocos2d::extension::CCScale9Sprite* createScale9Sprite(const char *szName);
 	// 加载UIImageView资源
+	static cocos2d::ui::UIImageView* createUIImageView(const char *szFileName);
 	static void loadImageViewTexture(cocos2d::ui::UIImageView *pImageView, const char *szFileName);
 	// 加载UIButton资源
+	static cocos2d::ui::UIButton* createUIButton(const char *normal, const char *selected, const char *disabled, 
+		cocos2d::CCObject *target = NULL, cocos2d::ui::SEL_TouchEvent selector = NULL);
 	static void loadButtonTextures(cocos2d::ui::UIButton *pButton, const char* normal,const char* selected,const char* disabled);
 	
 protected:
